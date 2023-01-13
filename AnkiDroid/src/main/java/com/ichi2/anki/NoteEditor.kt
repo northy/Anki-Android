@@ -1668,7 +1668,7 @@ class NoteEditor : AnkiActivity(), DeckSelectionListener, SubtitleListener, Tags
         setNoteTypePosition()
         setDid(note)
         updateTags()
-        updateCards(mEditorNote!!.model())
+        updateCards(mEditorNote!!.model(), mEditorNote!!.id)
         updateToolbar()
         populateEditFields(changeType, false)
         updateFieldsFromStickyText()
@@ -1866,21 +1866,41 @@ class NoteEditor : AnkiActivity(), DeckSelectionListener, SubtitleListener, Tags
     }
 
     /** Update the list of card templates for current note type  */
-    private fun updateCards(model: JSONObject?) {
+    private fun updateCards(model: JSONObject?, noteId: Long? = null) {
         Timber.d("updateCards()")
         val tmpls = model!!.getJSONArray("tmpls")
         var cardsList = StringBuilder()
         // Build comma separated list of card names
         Timber.d("updateCards() template count is %s", tmpls.length())
+
+        val ordToFactorMap = hashMapOf<Int, String>()
+        noteId?.run {
+            col.db
+                .query(
+                    "SELECT ord, factor FROM cards WHERE nid = ?",
+                    noteId
+                ).use { cursor ->
+                    while (cursor.moveToNext()) {
+                        val ord = cursor.getInt(0)
+                        val factor = "${cursor.getInt(1) / 10}%"
+                        ordToFactorMap[ord] = factor
+                    }
+                }
+        }
+
         for (i in 0 until tmpls.length()) {
-            var name = tmpls.getJSONObject(i).optString("name")
+            val name = tmpls.getJSONObject(i).optString("name")
+            val ord = tmpls.getJSONObject(i).optInt("ord")
+            val factor = if (ordToFactorMap.containsKey(ord)) ordToFactorMap[ord] else "?%"
+
+            var displayString = "$name ($factor)"
             // If more than one card, and we have an existing card, underline existing card
             if (!addNote && tmpls.length() > 1 && model === mEditorNote!!.model() && mCurrentEditedCard != null && mCurrentEditedCard!!.template()
                 .optString("name") == name
             ) {
-                name = "<u>$name</u>"
+                displayString = "<u>$displayString</u>"
             }
-            cardsList.append(name)
+            cardsList.append(displayString)
             if (i < tmpls.length() - 1) {
                 cardsList.append(", ")
             }
