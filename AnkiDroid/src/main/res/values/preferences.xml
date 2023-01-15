@@ -138,6 +138,11 @@
     <string name="dev_options_enabled_msg">Enabled developer options</string>
     <!-- About -->
     <string name="about_screen_key">aboutScreen</string>
+    <!-- Lowkey -->
+    <string name="lowkey_disable_factor_changes_key">lowkeyDisableFactorChanges</string>
+    <string name="lowkey_disable_extra_buttons_key">lowkeyDisableExtraButtons</string>
+    <string name="lowkey_reset_cards_factor_key">lowkeyResetCardsFactor</string>
+    <string name="lowkey_screen_key">lowkeyScreen</string>
 
     <!-- Backup limits -->
     <string name="pref_backup_max_key">backupMax</string>

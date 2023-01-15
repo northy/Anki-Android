@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+~ Copyright (c) 2009 Nicolas Raoul <nicolas.raoul@gmail.com>
+~ Copyright (c) 2009 Edu Zamora <edu.zasu@gmail.com>
+~ Copyright (c) 2009 Jordi Chacon <jordi.chacon@gmail.com>
+~ Copyright (c) 2011 Norbert Nagold <norbert.nagold@gmail.com>
+~ Copyright (c) 2012 Kostas Spyropoulos <inigo.aldana@gmail.com>
+~ Copyright (c) 2014 Timothy Rae <perceptualchaos2@gmail.com>
+~
+~ This program is free software; you can redistribute it and/or modify it under
+~ the terms of the GNU General Public License as published by the Free Software
+~ Foundation; either version 3 of the License, or (at your option) any later
+~ version.
+~
+~ This program is distributed in the hope that it will be useful, but WITHOUT ANY
+~ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+~ PARTICULAR PURPOSE. See the GNU General Public License for more details.
+~
+~ You should have received a copy of the GNU General Public License along with
+~ this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!-- Reviewing Preferences -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://arbitrary.app.namespace/com.ichi2.anki"
+    xmlns:app1="http://schemas.android.com/apk/res-auto"
+    android:title="Lowkey preferences"
+    android:key="@string/lowkey_screen_key">
+    <PreferenceCategory android:title="Reviewing" >
+        <SwitchPreference
+            android:defaultValue="false"
+            android:disableDependentsState="false"
+            android:key="@string/lowkey_disable_factor_changes_key"
+            android:summary="When you review a card the options (again, hard, good) will not change a card's factor%"
+            android:title="Disable factor changes" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:disableDependentsState="false"
+            android:key="@string/lowkey_disable_extra_buttons_key"
+            android:summary="Removing extra options is good to reduce cognitive overload"
+            android:title="Remove hard and good buttons" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Tools">
+        <com.ichi2.preferences.NumberRangePreferenceCompat
+            android:key="@string/lowkey_reset_cards_factor_key"
+            android:title="Reset collection's factor"
+            android:summary="Change all cards factor to the chosen factor%\nNOTE: This can't be undone"
+            app:min="130"
+            app:max="500"
+            android:defaultValue="250" />
+    </PreferenceCategory>
+</PreferenceScreen>
