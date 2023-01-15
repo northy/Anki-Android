@@ -98,6 +98,15 @@
         android:fragment="com.ichi2.anki.preferences.DevOptionsFragment"
         app:isPreferenceVisible="false">
     </Preference>
+
+    <!-- Lowkey Preferences -->
+    <com.ichi2.preferences.HeaderPreference
+        android:fragment="com.ichi2.anki.preferences.LowkeySettingsFragment"
+        android:icon="@drawable/ic_list_black"
+        android:key="@string/lowkey_screen_key"
+        android:title="Lowkey">
+    </com.ichi2.preferences.HeaderPreference>
+
     <!-- About -->
     <Preference
         android:key="@string/about_screen_key"

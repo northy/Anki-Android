@@ -1589,7 +1589,9 @@ open class SchedV2(col: Collection) : AbstractSched(col) {
     protected open fun _rescheduleLapse(card: Card): Int {
         val conf = _lapseConf(card)
         card.lapses = card.lapses + 1
-        card.factor = Math.max(1300, card.factor - 200)
+        if (!col.get_config("lowkeyDisableFactorChanges", false)!!) {
+            card.factor = Math.max(1300, card.factor - 200)
+        }
         val delay: Int
         val suspended = _checkLeech(card, conf) && card.queue == Consts.QUEUE_TYPE_SUSPENDED
         if (conf.getJSONArray("delays").length() != 0 && !suspended) {
@@ -1625,7 +1627,9 @@ open class SchedV2(col: Collection) : AbstractSched(col) {
         }
 
         // then the rest
-        card.factor = Math.max(1300, card.factor + FACTOR_ADDITION_VALUES[ease - 2])
+        if (!col.get_config("lowkeyDisableFactorChanges", false)!!) {
+            card.factor = Math.max(1300, card.factor + FACTOR_ADDITION_VALUES[ease - 2])
+        }
         card.due = (mToday!! + card.ivl).toLong()
 
         // card leaves filtered deck

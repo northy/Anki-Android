@@ -1002,6 +1002,11 @@ open class Reviewer : AbstractFlashcardViewer() {
             }
         }
 
+        if (col.get_config("lowkeyDisableExtraButtons", false)!!) {
+            easeButton2!!.setVisibility(View.GONE)
+            easeButton4!!.setVisibility(View.GONE)
+        }
+
         // Show next review time
         if (shouldShowNextReviewTime()) {
             fun nextIvlStr(button: Int) = sched!!.nextIvlStr(this, currentCard!!, button)

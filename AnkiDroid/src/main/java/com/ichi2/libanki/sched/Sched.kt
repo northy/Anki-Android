@@ -708,7 +708,9 @@ class Sched(col: Collection) : SchedV2(col) {
         if (_resched(card)) {
             card.lapses = card.lapses + 1
             card.ivl = _nextLapseIvl(card, conf)
-            card.factor = Math.max(1300, card.factor - 200)
+            if (!col.get_config("lowkeyDisableFactorChanges", false)!!) {
+                card.factor = Math.max(1300, card.factor - 200)
+            }
             card.due = (mToday!! + card.ivl).toLong()
             // if it's a filtered deck, update odue as well
             if (card.isInDynamicDeck) {
@@ -755,7 +757,9 @@ class Sched(col: Collection) : SchedV2(col) {
         if (_resched(card)) {
             _updateRevIvl(card, ease)
             // then the rest
-            card.factor = Math.max(1300, card.factor + FACTOR_ADDITION_VALUES[ease - 2])
+            if (!col.get_config("lowkeyDisableFactorChanges", false)!!) {
+                card.factor = Math.max(1300, card.factor + FACTOR_ADDITION_VALUES[ease - 2])
+            }
             card.due = (mToday!! + card.ivl).toLong()
         } else {
             card.due = card.oDue
