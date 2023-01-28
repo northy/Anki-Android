@@ -29,14 +29,14 @@ android {
     compileSdkVersion 33 // change api compileSdkVersion at the same time
 
     defaultConfig {
-        applicationId "com.ichi2.anki"
+        applicationId "xyz.northy.lowkeyankidroid"
         buildConfigField "Boolean", "CI", (System.getenv("CI") == "true").toString()
         buildConfigField "Boolean", "LEGACY_SCHEMA", "true"
         buildConfigField "String", "ACRA_URL", '"https://ankidroid.org/acra/report"'
         buildConfigField "String", "BACKEND_VERSION", "\"$ankidroid_backend_version\""
         buildConfigField "Boolean", "ENABLE_LEAK_CANARY", "false"
         buildConfigField "Boolean", "LEGACY_STORAGE", "false"
-        resValue "string", "app_name", "AnkiDroid"
+        resValue "string", "app_name", "Lowkey Ankidroid"
 
         // The version number is of the form:
         // <major>.<minor>.<maintenance>[dev|alpha<build>|beta<build>|]
@@ -64,7 +64,7 @@ android {
         minSdkVersion 21
         //noinspection OldTargetApi - also performed in api/build.fradle
         targetSdkVersion 29 // change .travis.yml platform download at same time
-        testApplicationId "com.ichi2.anki.tests"
+        testApplicationId "xyz.northy.lowkeyankidroid.tests"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner 'com.ichi2.testutils.NewCollectionPathTestRunner'
     }
