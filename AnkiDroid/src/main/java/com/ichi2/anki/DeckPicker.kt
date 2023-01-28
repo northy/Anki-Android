@@ -2332,7 +2332,7 @@ open class DeckPicker :
                     .setAction(Intent.ACTION_VIEW)
                     .putExtra("deckId", did)
             )
-            .setIcon(IconCompat.createWithResource(context, R.mipmap.ic_launcher))
+            .setIcon(IconCompat.createWithResource(context, R.drawable.ankidroid_logo))
             .setShortLabel(Decks.basename(col.decks.name(did)))
             .setLongLabel(col.decks.name(did))
             .build()

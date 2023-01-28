@@ -82,7 +82,7 @@
             <aapt:attr name="android:fillColor">
                 <gradient android:endX="152.529" android:endY="172.006"
                     android:startX="153.08" android:startY="77.9521" android:type="linear">
-                    <item android:color="#FF41B3EC" android:offset="0"/>
+                    <item android:color="#FF00FF55" android:offset="0"/>
                     <item android:color="#FF1699DA" android:offset="1"/>
                 </gradient>
             </aapt:attr>
